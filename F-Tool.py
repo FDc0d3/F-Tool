@@ -251,7 +251,7 @@ class Tool:
 					try:
 						parser = parse.urlparse(lookup)
 						host = parser.netloc
-						path = parser.path
+						path = parser.path.replace("/", "")
 						if parser.scheme == 'https':
 							print(response_url(self.headers).lookup(host))
 						elif parser.scheme == 'http':
