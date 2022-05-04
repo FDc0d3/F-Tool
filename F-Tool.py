@@ -114,7 +114,7 @@ class response_url:
 			elif status == 404:
 				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Not Found)"
 			elif status == 429:
-				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds |"" {status} (To Many Requests)"
+				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (To Many Requests)"
 			elif status == 500:
 				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Internal Server Error)"
 			elif status == 502:
