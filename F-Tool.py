@@ -114,7 +114,7 @@ class response_url:
 			elif status == 404:
 				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Not Found)"
 			elif status == 429:
-				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (To Many Requests)"
+				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds |"" {status} (To Many Requests)"
 			elif status == 500:
 				return Color.LG+f"    [+] URL: {url}"+Color.LR+f"\n    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Internal Server Error)"
 			elif status == 502:
@@ -174,22 +174,22 @@ class Tool:
 			read_url = p.read()
 			readjson = json.loads(read_url)
 		try:
-			http_url_1 = requests.get(readjson['Proxies'][0]['url'], headers=self.headers).text
-			http_url_2 = requests.get(readjson['Proxies'][1]['url'], headers=self.headers).text
-			http_url_3 = requests.get(readjson['Proxies'][2]['url'], headers=self.headers).text
-			http_url_4 = requests.get(readjson['Proxies'][3]['url'], headers=self.headers).text
-			https_url_5 = requests.get(readjson['Proxies'][4]['url'], headers=self.headers).text
-			https_url_6 = requests.get(readjson['Proxies'][5]['url'], headers=self.headers).text
-			https_url_7 = requests.get(readjson['Proxies'][6]['url'], headers=self.headers).text
-			https_url_8 = requests.get(readjson['Proxies'][7]['url'], headers=self.headers).text
-			socks4_url_9 = requests.get(readjson['Proxies'][8]['url'], headers=self.headers).text
-			socks4_url_10 = requests.get(readjson['Proxies'][9]['url'], headers=self.headers).text
-			socks4_url_11 = requests.get(readjson['Proxies'][10]['url'], headers=self.headers).text
-			socks4_url_12 = requests.get(readjson['Proxies'][11]['url'], headers=self.headers).text
-			socks5_url_13 = requests.get(readjson['Proxies'][12]['url'], headers=self.headers).text
-			socks5_url_14 = requests.get(readjson['Proxies'][13]['url'], headers=self.headers).text
-			socks5_url_15 = requests.get(readjson['Proxies'][14]['url'], headers=self.headers).text
-			socks5_url_16 = requests.get(readjson['Proxies'][15]['url'], headers=self.headers).text
+			http  = requests.get(readjson['Proxies'][0]['url'], headers=self.headers).text
+			http += requests.get(readjson['Proxies'][1]['url'], headers=self.headers).text
+			http += requests.get(readjson['Proxies'][2]['url'], headers=self.headers).text
+			http += requests.get(readjson['Proxies'][3]['url'], headers=self.headers).text
+			https = requests.get(readjson['Proxies'][4]['url'], headers=self.headers).text
+			https += requests.get(readjson['Proxies'][5]['url'], headers=self.headers).text
+			https += requests.get(readjson['Proxies'][6]['url'], headers=self.headers).text
+			https +=  requests.get(readjson['Proxies'][7]['url'], headers=self.headers).text
+			socks4  = requests.get(readjson['Proxies'][8]['url'], headers=self.headers).text
+			socks4 += requests.get(readjson['Proxies'][9]['url'], headers=self.headers).text
+			socks4 += requests.get(readjson['Proxies'][10]['url'], headers=self.headers).text
+			socks4 += requests.get(readjson['Proxies'][11]['url'], headers=self.headers).text
+			socks5 = requests.get(readjson['Proxies'][12]['url'], headers=self.headers).text
+			socks5 += requests.get(readjson['Proxies'][13]['url'], headers=self.headers).text
+			socks5 += requests.get(readjson['Proxies'][14]['url'], headers=self.headers).text
+			socks5 += requests.get(readjson['Proxies'][15]['url'], headers=self.headers).text
 			os.system('clear')
 		except requests.exceptions.ConnectionError:
 			sys.exit(Color.LR+"Error: Check your Internet Connection.")
@@ -204,19 +204,19 @@ class Tool:
 				option = input(Color.LR+"["+Color.LG+"Proxy"+Color.LR+"] >>> "+Color.RESET)
 				if option == '01' or option == '1':
 					with open("http.txt", 'w') as p:
-						p.write(http_url_1 + http_url_2 + http_url_3 + http_url_4)
+						p.write(http)
 					print(Color.LG+"[+]"+Color.LC+" Saved to http.txt")
 				elif option == '02' or option == '2':
 					with open("https.txt", 'w') as p:
-						p.write(https_url_5 + https_url_6 + https_url_7 + https_url_8)
+						p.write(https)
 					print(Color.LG+"[+]"+Color.LC+" Saved to https.txt")
 				elif option == '03' or option == '3':
 					with open("socks4.txt", 'w') as p:
-						p.write(socks4_url_9 + socks4_url_10 + socks4_url_11 + socks4_url_12)
+						p.write(socks4)
 					print(Color.LG+"[+]"+Color.LC+" Saved to socks4.txt")
 				elif option == '04' or option == '4':
 					with open("socks5.txt", 'w') as p:
-						p.write(socks5_url_13 + socks5_url_14 + socks5_url_15 + socks5_url_16)
+						p.write(socks5)
 					print(Color.LG+"[+]"+Color.LC+" Saved to socks5.txt")
 				elif option == 'ref' or option == 'REF':
 					self.proxy(option)
