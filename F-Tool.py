@@ -59,6 +59,7 @@ class Home:
 					self.home()
 				elif option == 'clear' or option == 'CLEAR':
 					os.system('clear')
+					F_Tool.home()
 				elif option == 'help' or option == 'HELP':
 					print(self.help)
 				elif option == 'dev' or option == 'DEV':
@@ -165,7 +166,7 @@ class Tool:
 		self.headers = headers
 
 	def proxy(self, new):
-		if new == 'ref' or new == 'REF':
+		if new == 'ref' or new == 'REF' or new == 'clear' or new == 'CLEAR':
 			os.system('clear')
 			print(Color.LG+"[*] Downloading New Proxy...")
 		else:
@@ -205,25 +206,26 @@ class Tool:
 				if option == '01' or option == '1':
 					with open("http.txt", 'w') as p:
 						p.write(http)
-					print(Color.LG+"[+]"+Color.LC+" Saved to http.txt")
+					print(Color.LG+"[+]"+Color.LC+" HTTP Saved to http.txt")
 				elif option == '02' or option == '2':
 					with open("https.txt", 'w') as p:
 						p.write(https)
-					print(Color.LG+"[+]"+Color.LC+" Saved to https.txt")
+					print(Color.LG+"[+]"+Color.LC+" HTTPS to https.txt")
 				elif option == '03' or option == '3':
 					with open("socks4.txt", 'w') as p:
 						p.write(socks4)
-					print(Color.LG+"[+]"+Color.LC+" Saved to socks4.txt")
+					print(Color.LG+"[+]"+Color.LC+" SOCKS4 Saved to socks4.txt")
 				elif option == '04' or option == '4':
 					with open("socks5.txt", 'w') as p:
 						p.write(socks5)
-					print(Color.LG+"[+]"+Color.LC+" Saved to socks5.txt")
+					print(Color.LG+"[+]"+Color.LC+" SOCKS5 Saved to socks5.txt")
 				elif option == 'ref' or option == 'REF':
 					self.proxy(option)
 				elif option == 'home' or option == 'HOME':
 					F_Tool.home()
 				elif option == 'clear' or option == 'CLEAR':
 					os.system('clear')
+					self.proxy(option)
 				elif option == 'help' or option == 'HELP':
 					print(self.help)
 				elif option == 'dev' or option == 'DEV':
@@ -311,6 +313,7 @@ class Tool:
 				F_Tool.home()
 			elif option == 'clear' or option == 'CLEAR':
 				os.system('clear')
+				self.webtools()
 			elif option == 'help' or option == 'HELP':
 				print(self.help)
 			elif option == 'dev' or option == 'DEV':
@@ -394,14 +397,11 @@ def main():
 
 if __name__ == '__main__':
 	commands = Color.LC+"""HOME"""+Color.LR+""" ~> """+Color.LY+"""Back to home"""+Color.LC+"""
-REF"""+Color.LR+""" ~> """+Color.LY+"""Refresh the program"""+Color.LC+"""
+REF"""+Color.LR+""" ~> """+Color.LY+"""Refresh the menu"""+Color.LC+"""
 CLEAR"""+Color.LR+""" ~> """+Color.LY+"""Clear your face XD"""+Color.LC+"""
 EXIT"""+Color.LR+""" ~> """+Color.LY+"""Exit the program"""+Color.LC+"""
 DEV"""+Color.LR+""" ~> """+Color.LY+"""Contact me :)"""
-	dev = Color.LC+"""Telegram"""+Color.LR+"""  :"""+Color.LY+""" https://t.me/FDc0d3"""+Color.LC+"""
-Github"""+Color.LR+"""    :"""+Color.LY+""" https://github.com/FDc0d3"""+Color.LC+"""
-Facebook"""+Color.LR+"""  :"""+Color.LY+""" https//facebook.com/F34RL3SS.DEV"""+Color.LC+"""
-Email"""+Color.LR+"""     :"""+Color.LY+""" fearless-devs@proton.me"""
+	dev = Color.LC+"""Telegram"""+Color.LR+"""  :"""+Color.LY+""" https://t.me/FDc0d3"""
 	F_Tool = Home(commands, dev)
 	Tool = Tool(commands, dev, spoof_useragents())
 	main()
