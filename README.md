@@ -21,6 +21,8 @@
 
 # Installation
 
+* Please Please use spoofed server for the best experience.
+
 * ``` apt -y update; apt -y upgrade; apt -y install screen git nodejs```
 * ```git clone https://github.com/FDc0d3/F-Tool.git```
 * ```npm i fake-useragent```
