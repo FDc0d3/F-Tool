@@ -21,7 +21,7 @@
 
 # Installation
 
-* ```apt install -y update screen git nodejs```
+* ``` apt -y update; apt -y upgrade; apt -y install screen git nodejs```
 * ```git clone https://github.com/FDc0d3/F-Tool.git```
 * ```npm i fake-useragent```
 * ```npm i request```
