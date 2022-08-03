@@ -25,9 +25,10 @@
 
 * ``` apt -y update; apt -y upgrade; apt -y install screen git nodejs```
 * ```git clone https://github.com/FDc0d3/F-Tool.git```
+* ```cd F-Tool; pip3 install requirements.txt```
 * ```npm i fake-useragent```
 * ```npm i request```
-* ```cd F-Tool; pip3 install requirements.txt```
+
 
 # Proofs
 
