@@ -76,7 +76,7 @@ function cipher() {
     return cplist[Math.floor(Math.random() * cplist.length)];
 }
 
-proxys = fs.readFileSync(process.argv[5], 'utf-8').toString().match(/\S+/g);
+proxys = fs.readFileSync("utils/http.txt", 'utf-8').toString().match(/\S+/g);
 function proxyr() {
     return proxys[Math.floor(Math.random() * proxys.length)];
 }
