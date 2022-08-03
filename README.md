@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/IMG_20220803_215921.jpg" width="400px" height="150px" alt="picture"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/IMG_20220803_215921.jpg" width="400px" height="400px" alt="picture"></p>
 <h1 align="center">F-Tool - Powerful DDoS Script With 7 Methods</h1>
 <em><h5 align="center">Programming Language - Python 3</h5></em>
 
@@ -29,10 +29,10 @@
 
 ### Proofs
 
-<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/IMG_20220803_220812.jpg" width="400px" height="400px" alt="picture"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/IMG_20220803_220812.jpg" width="500px" height="400px" alt="picture"></p>
 <p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/Screenshot_2022_0803_141022.png" width="400px" height="400px" alt="picture"></p>
-<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/IMG_20220803_225424.jpg" width="400px" height="400px" alt="picture"></p>
-<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/Screenshot_2022_0803_225814.png" width="400px" height="400px" alt="picture"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/IMG_20220803_225424.jpg" width="500px" height="400px" alt="picture"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/FDc0d3/F-Tool/main/screenshot/Screenshot_2022_0803_225814.png" width="500px" height="400px" alt="picture"></p>
 
 
 
