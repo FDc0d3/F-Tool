@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-
+from shutil import which
 from urllib import parse
 from os import system
 import subprocess
@@ -656,6 +656,20 @@ def spoof_useragents():
 	}
 
 def main():
+	#  checking if you're gay 😏
+	F_Tool.styleText("[+] Checking Dependencies...\n\n")
+	pkgs = ['screen', 'node']
+	install = True
+	for pkg in pkgs:
+		ur_mom = which(pkg)
+		if ur_mom == None:
+			F_Tool.styleText(f"[!] {pkg} is not installed!\n")
+			install = False
+		else:
+			pass
+	if install == False:
+		sys.exit(f'\n[?] Error? try:{Color.LG} sh install.sh')
+	else:pass
 	F_Tool.home()
 
 
