@@ -2,7 +2,7 @@ const { exec } = require('child_process');
 require('events').EventEmitter.defaultMaxListeners = 0;
 process.setMaxListeners(0);
 
-//	http2 by @Mrasdaas fixed by Aya for F-Tool method
+//	http2 by @Mrasdaas fixed by Aya for F-Tool cringe method
 
 const fs = require('fs');
 const url = require('url');
