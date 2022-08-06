@@ -599,7 +599,7 @@ class Tool:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
-					thread = int(input(f"{Color.LG} [>] Thread: "+Color.RESET))
+					thread = int(input(f"{Color.LG} [>] Thread(1 or 2): "+Color.RESET))
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
 					with open("utils/http.txt", 'w') as p:
 						p.write(httpx.get(http_proxy).text)
