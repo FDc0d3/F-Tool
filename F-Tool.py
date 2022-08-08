@@ -686,10 +686,11 @@ def main():
 	try:
 		script = True
 		with open('utils') as important:pass
+	except IsADirectoryError:pass
 	except FileNotFoundError:
 		print(f"{Color.LR}[CRITICAL ERROR]:{Color.RESET} File: 'utils' NotFound")
 		print("\n[+] Please download on GitHub, or git clone: https://github.com/FDc0d3/F-Tool.git\n")
-		os.remove(f'__file__')
+		os.remove(f'{__file__}')
 		script = False
 	if script == False:sys.exit()
 	else:pass
