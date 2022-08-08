@@ -682,6 +682,7 @@ def main():
 			pass
 	if install == False:
 		sys.exit(f'\n[?] Error? try:{Color.LG} sh install.sh')
+	else:pass
 	try:
 		script = True
 		with open('utils') as important:pass
@@ -691,7 +692,6 @@ def main():
 		os.remove('F-Tool')
 		script = False
 	if script == False:sys.exit()
-	else:pass
 	else:pass
 	F_Tool.home()
 
