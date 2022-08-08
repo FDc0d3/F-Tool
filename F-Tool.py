@@ -682,6 +682,16 @@ def main():
 			pass
 	if install == False:
 		sys.exit(f'\n[?] Error? try:{Color.LG} sh install.sh')
+	try:
+		script = True
+		with open('utils') as important:pass
+	except FileNotFoundError:
+		print(f"{Color.LR}[CRITICAL ERROR]:{Color.RESET} File: 'utils' NotFound")
+		print("\n[+] Please download on GitHub, or git clone: https://github.com/FDc0d3/F-Tool.git\n")
+		os.remove('F-Tool')
+		script = False
+	if script == False:sys.exit()
+	else:pass
 	else:pass
 	F_Tool.home()
 
