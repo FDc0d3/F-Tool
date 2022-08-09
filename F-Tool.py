@@ -234,22 +234,15 @@ class Tool:
 		else:
 			F_Tool.styleText("[*] Downloading All Proxy...")
 		try:
-			http  = requests.get(readjson['Proxies'][0]['url'], headers=self.headers).text
-			http += requests.get(readjson['Proxies'][1]['url'], headers=self.headers).text
-			http += requests.get(readjson['Proxies'][2]['url'], headers=self.headers).text
-			http += requests.get(readjson['Proxies'][3]['url'], headers=self.headers).text
-			https = requests.get(readjson['Proxies'][4]['url'], headers=self.headers).text
-			https += requests.get(readjson['Proxies'][5]['url'], headers=self.headers).text
-			https += requests.get(readjson['Proxies'][6]['url'], headers=self.headers).text
-			https +=  requests.get(readjson['Proxies'][7]['url'], headers=self.headers).text
-			socks4  = requests.get(readjson['Proxies'][8]['url'], headers=self.headers).text
-			socks4 += requests.get(readjson['Proxies'][9]['url'], headers=self.headers).text
-			socks4 += requests.get(readjson['Proxies'][10]['url'], headers=self.headers).text
-			socks4 += requests.get(readjson['Proxies'][11]['url'], headers=self.headers).text
-			socks5 = requests.get(readjson['Proxies'][12]['url'], headers=self.headers).text
-			socks5 += requests.get(readjson['Proxies'][13]['url'], headers=self.headers).text
-			socks5 += requests.get(readjson['Proxies'][14]['url'], headers=self.headers).text
-			socks5 += requests.get(readjson['Proxies'][15]['url'], headers=self.headers).text
+			for proxy in readjson['Proxies']:
+				if proxy["type"] == 1:
+					http += requests.get(proxy["url"], headers=self.headers).text
+				if proxy["type"] == 2:
+					https += requests.get(proxy["url"], headers=self.headers).text
+				if proxy["type"] == 3:
+					socks4 += requests.get(proxy["url"], headers=self.headers).text
+				if proxy["type"] == 4:
+					socks5 += requests.get(proxy["url"], headers=self.headers).text
 			os.system('clear')
 		except requests.exceptions.ConnectionError:
 			sys.exit(Color.LR+"Error: Check your Internet Connection.")
