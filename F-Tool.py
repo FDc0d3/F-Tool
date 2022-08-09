@@ -611,7 +611,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '03' or option == '3':
+			elif option == '04' or option == '4':
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
