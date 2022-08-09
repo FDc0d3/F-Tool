@@ -16,9 +16,9 @@
 
 * Layer7
 
-* SOCKET: Slow HTTP/1 socket flood
-* HTTP1: HTTP/1.1 GET flood
-* HTTP2: HTTP/2 GET flood
+* SOCKET: Slow HTTP/1.1 socket flood
+* HTTP1: TLS HTTP/1.1 GET flood
+* HTTP2: TLS HTTP/2 GET flood
 * CRINGE: Powerful Method Target Maybe die from Cringe
 
 # Installation
