@@ -37,7 +37,7 @@ class Home:
 		self.dev = dev
 
 	def getproxies(self):
-		self.styleText("\n [*] Downloading Proxy...\n")
+		#self.styleText("\n [*] Downloading Proxy...\n")
 		file_name = "utils/http.txt"
 		http_proxies = [
 			"https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all",
@@ -60,8 +60,8 @@ class Home:
 	def home(self): # don't edit this banner lol
 		print(f"""
                         {Color.LG}╔══════════════════════╗
-    {Color.LC}╔═╗{Color.LB} ╔╦╗╔═╗╔═╗╦      {Color.LG}║ {Color.LR}Created: {Color.LY}5/3/2022    {Color.LG}║
-    {Color.LC}╠╣{Color.LB}{Color.LR}───{Color.LB}║ ║ ║║ ║║      {Color.LG}║ {Color.LR}Updated: {Color.LY}8/3/2022    {Color.LG}║
+    {Color.LC}╔═╗{Color.LB} ╔╦╗╔═╗╔═╗╦      {Color.LG}║ {Color.LR}Created: {Color.LY}5/3/22      {Color.LG}║
+    {Color.LC}╠╣{Color.LB}{Color.LR}───{Color.LB}║ ║ ║║ ║║      {Color.LG}║ {Color.LR}Updated: {Color.LY}8/3/22      {Color.LG}║
     {Color.LC}╚{Color.LB}    ╩ ╚═╝╚═╝╩═╝{Color.LG}v2  {Color.LG}║ {Color.LB}Simple but mighty XD {Color.LG}║
                         {Color.LG}╚══════════════════════╝
     {Color.LR}[{Color.LG}>     Made with ☕ By FDc0d3 & Aya    {Color.LG}<{Color.LR}]""")
