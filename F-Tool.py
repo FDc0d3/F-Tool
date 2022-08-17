@@ -75,34 +75,35 @@ class Home:
 			try:
 				sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"Home"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 				option = input()
-				if option == '01' or option == '1':
+				if option in ['01', '1']:
 					os.system('clear')
 					Tool.proxy(option)
-				elif option == '02' or option == '2':
+				elif option in ['02', '2']:
 					os.system('clear')
 					Tool.webtools()
-				elif option  == '03' or option == '3':
+				elif option in ['03', '3']:
 					os.system('clear')
 					Tool.bbos()
-				elif option == '04' or option == '4':
+				elif option in ['04', '4']:
 					os.system('clear')
 					Tool.spdtest()
-				elif option == 'ref' or option == 'REF':
+				elif option in ['ref', 'REF']:
 					self.home()
-				elif option == 'home' or option == 'HOME':
+				elif option in ['home', 'HOME']:
 					self.home()
-				elif option == 'clear' or option == 'CLEAR':
-					os.system('clear')
-					F_Tool.home()
-				elif option == 'help' or option == 'HELP':
+				elif option in ['clear', 'CLEAR']:
+					os.system('clear');F_Tool.home()
+				elif option in ['help', 'HELP', '?']:
 					print(self.help)
-				elif option == 'dev' or option == 'DEV':
+				elif option in ['dev', 'DEV']:
 					print(self.dev)
-				elif option == 'exit' or option == 'EXIT':
+				elif option in ['exit', 'EXIT']:
 					subprocess.run(['pkill -f F-Tool.py'], shell=True)
-				elif option == 'stop' or option == 'STOP':
+				elif option in ['stop', 'STOP']:
 					subprocess.run(['pkill screen'], shell=True)
 					print(f"{Color.LG} [!] Attack Stopped!")
+				elif option in ['ddos', 'DDOS', 'bbos', 'BBOS']:
+					os.system('clear');Tool.bbos()
 				elif option == "":
 					pass
 				else:
@@ -232,7 +233,7 @@ class Tool:
 				readjson = json.loads(p.read())
 		except FileNotFoundError:
 			sys.exit(f"{Color.LR}ERROR:{Color.RESET} File: 'utils' NotFound")
-		if new == 'ref' or new == 'REF' or new == 'clear' or new == 'CLEAR':
+		if new in ['ref', 'REF', 'clear', 'CLEAR']:
 			os.system('clear')
 			F_Tool.styleText("[*] Downloading New Proxy...")
 		else:
@@ -253,8 +254,7 @@ class Tool:
 						socks5 = requests.get(proxy["url"], headers=self.headers).text
 			os.system('clear')
 		except requests.exceptions.ConnectionError:
-			sys.exit(Color.LR+"Error: Check your Internet Connection.")
-
+			sys.exit(Color.LR+"\nError: Check your Internet Connection.")
 		print(f"""{Color.LG}
 
      ___               _
@@ -273,38 +273,40 @@ class Tool:
 		while True:
 				sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"Proxy"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 				option = input()
-				if option == '01' or option == '1':
+				if option in ['01', '1']:
 					with open("http.txt", 'w') as p:
 						p.write(http)
 					print(Color.LG+"[+]"+Color.LC+" HTTP Saved to http.txt")
-				elif option == '02' or option == '2':
+				elif option in ['02', '2']:
 					with open("https.txt", 'w') as p:
 						p.write(https)
 					print(Color.LG+"[+]"+Color.LC+" HTTPS to https.txt")
-				elif option == '03' or option == '3':
+				elif option in ['03', '3']:
 					with open("socks4.txt", 'w') as p:
 						p.write(socks4)
 					print(Color.LG+"[+]"+Color.LC+" SOCKS4 Saved to socks4.txt")
-				elif option == '04' or option == '4':
+				elif option in ['04', '4']:
 					with open("socks5.txt", 'w') as p:
 						p.write(socks5)
 					print(Color.LG+"[+]"+Color.LC+" SOCKS5 Saved to socks5.txt")
-				elif option == 'ref' or option == 'REF':
+				elif option in ['ref', 'REF']:
 					self.proxy(option)
-				elif option == 'home' or option == 'HOME':
+				elif option in ['home', 'HOME']:
 					F_Tool.home()
-				elif option == 'clear' or option == 'CLEAR':
+				elif option in ['clear', 'CLEAR']:
 					os.system('clear')
 					self.proxy(option)
-				elif option == 'help' or option == 'HELP':
+				elif option in ['help', 'HELP', '?']:
 					print(self.help)
-				elif option == 'dev' or option == 'DEV':
+				elif option in ['dev', 'DEV']:
 					print(self.dev)
-				elif option == 'exit' or option == 'EXIT':
+				elif option in ['exit', 'EXIT']:
 					subprocess.run(['pkill -f F-Tool.py'], shell=True)
-				elif option == 'stop' or option == 'STOP':
+				elif option in ['stop', 'STOP']:
 					subprocess.run(['pkill screen'], shell=True)
 					print(f"{Color.LG} [!] Attack Stopped!")
+				elif option in ['ddos', 'DDOS', 'bbos', 'BBOS']:
+					os.system('clear');Tool.bbos()
 				elif option == "":
 					pass
 				else:
@@ -330,7 +332,7 @@ class Tool:
 		while True:
 			sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"Webtool"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 			option = input()
-			if option == '01' or option == '1':
+			if option in ['01', '1']:
 				while True:
 					lookup = input(Color.LR+"["+Color.LG+"LOOKUP"+Color.LR+"]"+Color.LC+" Enter Target URL: "+Color.RESET)
 					parser = parse.urlparse(lookup)
@@ -343,17 +345,17 @@ class Tool:
 						host = parser.netloc
 					print(response_url(self.headers).lookup(host))
 					break
-			elif option == '02' or option == '2':
+			elif option in ['02', '2']:
 				while True:
 					ip_lookup = input(Color.LR+"["+Color.LG+"IP INFO"+Color.LR+"]"+Color.LC+" Enter Target IP: "+Color.RESET)
 					print(response_url(self.headers).ip_lookup(ip_lookup))
 					break
-			elif option == '03' or option == '3':
+			elif option in ['03', '3']:
 				while True:
 					http = input(Color.LR+"["+Color.LG+"HTTPCHECK"+Color.LR+"]"+Color.LC+" Enter Target URL: "+Color.RESET)
 					print(response_url(self.headers).http_status(http))
 					break
-			elif option == '04' or option == '4':
+			elif option in ['04', '4']:
 				while True:
 					findhost = input(Color.LR+"["+Color.LG+"FINDHOST"+Color.LR+"]"+Color.LC+" Enter Target URL: "+Color.RESET)
 					parser = parse.urlparse(findhost)
@@ -364,27 +366,28 @@ class Tool:
 					elif host == '':
 						print(response_url(self.headers).findhost(path))
 					break
-			elif option == '05' or option == '5':
+			elif option in ['05', '5']:
 				while True:
 					excractlink = input(Color.LR+"["+Color.LG+"EXCRACTLINK"+Color.LR+"]"+Color.LC+" Enter Target URL: "+Color.RESET)
 					print(response_url(self.headers).extractlink(excractlink))
 					break
-			elif option == 'ref' or option == 'REF':
+			elif option in ['ref', 'REF']:
 				self.webtools()
-			elif option == 'home' or option == 'HOME':
+			elif option in ['home', 'HOME']:
 				F_Tool.home()
-			elif option == 'clear' or option == 'CLEAR':
-				os.system('clear')
-				self.webtools()
-			elif option == 'help' or option == 'HELP':
+			elif option in ['clear', 'CLEAR']:
+				os.system('clear');self.webtools()
+			elif option in ['help', 'HELP', '?']:
 				print(self.help)
-			elif option == 'dev' or option == 'DEV':
+			elif option in ['dev', 'DEV']:
 				print(self.dev)
-			elif option == 'exit' or option == 'EXIT':
+			elif option in ['exit', 'EXIT']:
 				subprocess.run(['pkill -f F-Tool.py'], shell=True)
-			elif option == 'stop' or option == 'STOP':
+			elif option in ['stop', 'STOP']:
 				subprocess.run(['pkill screen'], shell=True)
 				print(f"{Color.LG} [!] Attack Stopped!")
+			elif option in ['ddos', 'DDOS', 'bbos', 'BBOS']:
+				os.system('clear');Tool.bbos()
 			elif option == "":
 				pass
 			else:
@@ -445,26 +448,25 @@ class Tool:
 		while True:
 			sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"L4/L7/BBoS"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 			option = input()
-			if option == '01' or option == '1':
+			if option in ['01', '1']:
 				os.system('clear');self.l4()
-			elif option == '02' or option == '2':
+			elif option in ['02', '2']:
 				os.system('clear');self.l7()
-			elif option == 'ref' or option == 'REF':
-				self.bbos()
-			elif option == 'home' or option == 'HOME':
+			elif option in ['home', 'HOME']:
 				F_Tool.home()
-			elif option == 'clear' or option == 'CLEAR':
-				os.system('clear')
-				self.bbos()
-			elif option == 'help' or option == 'HELP':
+			elif option in ['clear', 'CLEAR']:
+				os.system('clear');self.bbos()
+			elif option in ['help', 'HELP', '?']:
 				print(self.help)
-			elif option == 'dev' or option == 'DEV':
+			elif option in ['dev', 'Dev']:
 				print(self.dev)
-			elif option == 'exit' or option == 'EXIT':
+			elif option in ['exit', 'EXIT']:
 				subprocess.run(['pkill -f F-Tool.py'], shell=True)
-			elif option == 'stop' or option == 'STOP':
+			elif option in ['stop', 'STOP']:
 				subprocess.run(['pkill screen'], shell=True)
 				print(f"{Color.LG} [!] Attack Stopped!")
+			elif option in ['ddos', 'DDOS', 'bbos', 'BBOS']:
+				os.system('clear');Tool.bbos()
 			elif option == "":
 				pass
 			else:
@@ -490,7 +492,7 @@ class Tool:
 		while True:
 			sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"Layer4"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 			option = input()
-			if option == '01' or option == '1':
+			if option in ['01', '1']:
 				try:
 					ip = str(input(f"{Color.LG} [>] IP: "+Color.RESET))
 					port = int(input(f"{Color.LG} [>] Port: "+Color.RESET))
@@ -500,7 +502,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '02' or option == '2':
+			elif option in ['02', '2']:
 				try:
 					ip = str(input(f"{Color.LG} [>] IP: "+Color.RESET))
 					port = int(input(f"{Color.LG} [>] Port: "+Color.RESET))
@@ -510,7 +512,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '03' or option == '3':
+			elif option in ['03', '3']:
 				try:
 					ip = str(input(f"{Color.LG} [>] IP: "+Color.RESET))
 					port = int(input(f"{Color.LG} [>] Port: "+Color.RESET))
@@ -521,7 +523,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '04' or option == '4':
+			elif option in ['04', '4']:
 				try:
 					ip = str(input(f"{Color.LG} [>] IP: "+Color.RESET))
 					port = int(input(f"{Color.LG} [>] Port: "+Color.RESET))
@@ -532,7 +534,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '05' or option == '5':
+			elif option in ['05', '5']:
 				try:
 					ip = str(input(f"{Color.LG} [>] IP: "+Color.RESET))
 					port = int(input(f"{Color.LG} [>] Port: "+Color.RESET))
@@ -542,24 +544,25 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == 'ref' or option == 'REF':
+			elif option in ['ref', 'REF']:
 				self.l4()
-			elif option == 'home' or option == 'HOME':
+			elif option in ['home', 'HOME']:
 				F_Tool.home()
-			elif option == 'clear' or option == 'CLEAR':
-				os.system('clear')
-				self.l4()
-			elif option == 'help' or option == 'HELP':
+			elif option in ['clear', 'CLEAR']:
+				os.system('clear');self.l4()
+			elif option in ['help', 'HELP', '?']:
 				print(self.help)
-			elif option == 'dev' or option == 'DEV':
+			elif option in ['dev', 'DEV']:
 				print(self.dev)
-			elif option == 'exit' or option == 'EXIT':
+			elif option in ['exit', 'EXIT']:
 				subprocess.run(['pkill -f F-Tool.py'], shell=True)
-			elif option == 'stop' or option == 'STOP':
+			elif option in ['stop', 'STOP']:
 				subprocess.run(['pkill screen'], shell=True)
 				print(f"{Color.LG} [!] Attack Stopped!")
-			elif option == '00' or option == '0':
+			elif option in ['00', '0']:
 				os.system('clear');self.bbos()
+			elif option in ['ddos', 'DDOS', 'bbos', 'BBOS']:
+				os.system('clear');Tool.bbos()
 			elif option == "":
 				pass
 			else:
@@ -581,13 +584,10 @@ class Tool:
 		print(Color.LR+"["+Color.LG+"04"+Color.LR+"]"+Color.LC+" CRINGE: Powerful Method Target Maybe die from Cringe (JS)")
 		print(Color.LR+"["+Color.LG+"00"+Color.LR+"]"+Color.LC+" Return")
 		print("\n")
-		http_proxies = [
-			"https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
-		]
 		while True:
 			sys.stdout.write(Color.LB+"╔═══"+Color.LR+"["+Color.LG+"F-Toolv2"+Color.LB+"@"+Color.LG+"Layer7"+Color.LR+"]"+Color.LB+"\n╚══> "+Color.RESET)
 			option = input()
-			if option == '01' or option == '1':
+			if option in ['01', '1']:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
@@ -596,7 +596,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '02' or option == '2':
+			elif option in ['02', '2']:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
@@ -604,7 +604,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '03' or option == '3':
+			elif option in ['02', '3']:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
@@ -612,7 +612,7 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == '04' or option == '4':
+			elif option in ['04', '4']:
 				try:
 					url = str(input(f"{Color.LG} [>] URL: "+Color.RESET))
 					floodtime = int(input(f"{Color.LG} [>] Time: "+Color.RESET))
@@ -620,29 +620,33 @@ class Tool:
 					print(Color.LG+f"\n [!] Attack sent successfully!\n")
 				except:
 					print(f"{Color.LR}ERROR: {Color.RESET}Try again")
-			elif option == 'ref' or option == 'REF':
+			elif option in ['ref', 'REF']:
 				self.l7()
-			elif option == 'home' or option == 'HOME':
+			elif option in ['home', 'HOME']:
 				F_Tool.home()
-			elif option == 'clear' or option == 'CLEAR':
+			elif option in ['clear', 'CLEAR']:
 				os.system('clear')
 				self.l7()
-			elif option == 'help' or option == 'HELP':
+			elif option in ['help', 'HELP', '?']:
 				print(self.help)
-			elif option == 'dev' or option == 'DEV':
+			elif option in ['dev', 'DEV']:
 				print(self.dev)
-			elif option == 'exit' or option == 'EXIT':
+			elif option in ['exit', 'EXIT']:
 				subprocess.run(['pkill -f F-Tool.py'], shell=True)
-			elif option == 'stop' or option == 'STOP':
+			elif option in ['stop', 'STOP']:
 				subprocess.run(['pkill screen'], shell=True)
 				print(f"{Color.LG} [!] Attack Stopped!")
-			elif option == '00' or option == '0':
+			elif option in ['00', '0']:
 				os.system('clear');self.bbos()
+			elif option in ['ddos', 'DDOS', 'bbos', 'BBOS']:
+				os.system('clear');Tool.bbos()
 			elif option == "":
 				pass
 			else:
 				print(Color.LR+"command: "+Color.LG+f"{option}"+Color.LR+" not found")
 
+def soon():
+	pass
 
 def spoof_useragents():
 	spoof_ip = []
@@ -695,8 +699,7 @@ def main():
 		os.remove(f'{__file__}')
 		script = False
 	if script == False:sys.exit()
-	else:pass
-	F_Tool.home()
+	else:F_Tool.home()
 
 
 if __name__ == '__main__':
@@ -704,10 +707,12 @@ if __name__ == '__main__':
 {Color.LC}REF{Color.LR} ~> {Color.LY}Refresh the menu
 {Color.LC}CLEAR{Color.LR} ~> {Color.LY}Clear your face xd
 {Color.LC}EXIT{Color.LR} ~> {Color.LY}Exit the program
+{Color.LC}BBOS{Color.LR} ~> {Color.LY}L4/L7 DDOS Attack
 {Color.LC}STOP{Color.LR} ~> {Color.LY}Stop your Attack
 {Color.LC}DEV{Color.LR} ~> {Color.LY}Contact/Support dev"""
 	dev = f"""{Color.LC}Telegram{Color.LR}: {Color.LY}https://t.me/FDc0d3
 {Color.LC}New[BTC]Address{Color.LR}: {Color.LY}32FGCnt4uwkkByWuH8V4qyCSfynm1iVsmB"""
 	F_Tool = Home(commands, dev)
 	Tool = Tool(commands, dev, spoof_useragents())
-	main()
+	try:open('F-Tool.py');main()
+	except:quit()
