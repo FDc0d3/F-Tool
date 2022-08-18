@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+	 handsome list:
+		AnonPrixor ~ Yone ~ Lazercat ~ Catto ~ MrRage ~ Forky ~  Sussy Baka ~ Clowndzzy ~ Godzilla  ~ Baloo4Ever ~ fbi ~ Mrasdaas
+
+"""
 from shutil import which
 from urllib import parse
 from os import system
