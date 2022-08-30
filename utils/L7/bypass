@@ -42,7 +42,7 @@ class TlsBuilder {
         socket.setTimeout(10000);
         payload[":method"] = "GET";
         payload["Referer"] = objetive;
-        payload["User-agent"] = uas,
+        payload["User-agent"] = uas;
         payload["Cache-Control"] = 'no-cache, no-store,private, max-age=0, must-revalidate';
         payload["Pragma"] = 'no-cache, no-store,private, max-age=0, must-revalidate';
         payload['client-control'] = 'max-age=43200, s-max-age=43200';
