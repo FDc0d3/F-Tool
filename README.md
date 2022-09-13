@@ -8,7 +8,7 @@ SKID COPY: https://github.com/ngdangtr/F-Tool
 
 ORIGINAL: https://github.com/FDc0d3/F-Tool
 
-SKID HE DON'T KNOW WHAT'S MEAN 'F'
+PAID-VERSION: https://github.com/FDc0d3/F-Tool-Paid-Version
 
 IF YOU WANT TO BUY F-TOOL PAID VERSION CONTACT TG: @FDc0d3
 
